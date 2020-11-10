@@ -13,7 +13,6 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
-
     
     
     var locationManager = CLLocationManager()
@@ -21,14 +20,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var slider: MSCircularSlider!
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
-
+    @IBOutlet weak var textFieldActive: UITextField!
+    
+    
+    @IBOutlet weak var searchTableview: UITableView!
+    
     var distance = 0
     var timer : Timer?
 
     var startPos : CLLocation?
     var endPos : CLLocation?
 
+    var checkActive : Bool = true
     
+    var stopResult : Stops?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
        locationManager.requestAlwaysAuthorization()
        locationManager.requestWhenInUseAuthorization()
        locationManager.delegate = self
-            
+        
+        //searchTableview.isHidden = true
     }
     
     //TABLEVIEW
@@ -46,18 +52,33 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 5
+        
+        
+        if(stopResult != nil)
+        {
+            return stopResult!.StopLocation.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchFieldCell") as! destinationSearchVC
-        cell.searchText.text = "Destinationsexempel"
+        cell.searchText.text = stopResult!.StopLocation[indexPath.row].name
     
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let chosenStop = stopResult!.StopLocation[indexPath.row]
+        
+        startPos = locationManager.location!
+        endPos = CLLocation(latitude: chosenStop.lat, longitude: chosenStop.lon)
+
+        updateUI()
+        
+    }
     
     override func viewDidAppear(_ animated: Bool) {
     }
@@ -88,7 +109,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBAction func startBtn(_ sender: Any) {
         
         startPos = CLLocation (latitude: 55.609934, longitude: 13.007176)
-        endPos = CLLocation(latitude: 55.706461, longitude: 13.186557)
+        endPos = CLLocation(latitude: 60.61667, longitude: 16.76667)
 
         updateUI()
         //timer?.invalidate()
@@ -136,6 +157,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
     }
     
+
+    
+    
     
 //    func distance(from: CLLocation) -> CLLocationDistance{
 //        locationManager
@@ -143,8 +167,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 //        return
  
  
- 
- 
+    @IBAction func enterDestination(_ sender: Any) {
+        if let inputText = textFieldActive.text{
+            
+            let res = Trafiklab().loadFromServerURLSESSION(inputText) { result in
+                
+                self.stopResult = result
+                
+                DispatchQueue.main.async {
+                    if(result == nil)
+                    {
+                        // GÖM TABLEVIEW
+                        self.searchTableview.isHidden = true
+                    } else {
+                        // VISA TABLEVIEW
+                        self.searchTableview.isHidden = false
+                        self.searchTableview.reloadData()
+                    }
+                }
+                
+                
+            }
+            
+            print("query is now:",res)
+
+            // call the function for api-call
+        }
+        
+     /*   if textFieldActive.text != "" {
+            VCJson?.loadFromServerURLSESSION(textFieldActive.text!)
+            // call the function for api-call
+        }
+        */
+        
+    }
+     
+
+    
+    
 
     @IBAction func sliderValueChanged(_ sender: Any) {                              //connect slider to labels
         
@@ -181,15 +241,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             
         }
     }
+  /*
     
-}
+    //@IBOutlet weak var hideStartInfo: UIButton!
     
-    
-    
-   
-    
-    
-   
+    @IBAction func toggleBtn(_ sender: Any) {
     
 
+            checkActive = !checkActive
+            
+            if checkActive {
+                hideStartInfo.setImage(unCheckedBox, for: .normal)
+              print("box unchecked")
+            } else {
+                hideStartInfo.setImage(checkedBoxBlue, for: .normal)
+                print("box checked")
+            }
+        }
+*/
+
+}
+    
 

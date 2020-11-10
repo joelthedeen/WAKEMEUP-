@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C32E3584F65AC43C66B92DC2 /* Pods_WAKEMEUP_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72767A0A6B065FDE8BB7F0AF /* Pods_WAKEMEUP_.framework */; };
+		CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E687F255A95DA00F1E498 /* AudioViewController.swift */; };
 		CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB453CBC2549742F00903F85 /* popupViewController.swift */; };
 		CBD2FD6B2536E96C008B52DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */; };
 		CBD2FD6D2536E96C008B52DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2FD6C2536E96C008B52DB /* SceneDelegate.swift */; };
@@ -15,13 +16,14 @@
 		CBD2FD722536E96C008B52DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBD2FD702536E96C008B52DB /* Main.storyboard */; };
 		CBD2FD742536E96F008B52DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBD2FD732536E96F008B52DB /* Assets.xcassets */; };
 		CBD2FD772536E96F008B52DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBD2FD752536E96F008B52DB /* LaunchScreen.storyboard */; };
-		CBDD482D25504BF30006FEFC /* ViewControllerJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD482C25504BF30006FEFC /* ViewControllerJson.swift */; };
+		CBDD482D25504BF30006FEFC /* Trafiklab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD482C25504BF30006FEFC /* Trafiklab.swift */; };
 		CBDD483025515AE20006FEFC /* destinationSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD482F25515AE20006FEFC /* destinationSearchVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2686D30B7B1C152BA19C8CAA /* Pods-WAKEMEUP#.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WAKEMEUP#.debug.xcconfig"; path = "Target Support Files/Pods-WAKEMEUP#/Pods-WAKEMEUP#.debug.xcconfig"; sourceTree = "<group>"; };
 		72767A0A6B065FDE8BB7F0AF /* Pods_WAKEMEUP_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WAKEMEUP_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0E687F255A95DA00F1E498 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		CB453CBC2549742F00903F85 /* popupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupViewController.swift; sourceTree = "<group>"; };
 		CBD2FD672536E96C008B52DB /* WAKEMEUP#.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WAKEMEUP#.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,7 +33,7 @@
 		CBD2FD732536E96F008B52DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBD2FD762536E96F008B52DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBD2FD782536E96F008B52DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBDD482C25504BF30006FEFC /* ViewControllerJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewControllerJson.swift; path = "/Users/joelthedeen/Documents/Code/WAKEMEUP#/WAKEMEUP#/ViewControllerJson.swift"; sourceTree = "<absolute>"; };
+		CBDD482C25504BF30006FEFC /* Trafiklab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Trafiklab.swift; path = "/Users/joelthedeen/Documents/Code/WAKEMEUP#/WAKEMEUP#/Trafiklab.swift"; sourceTree = "<absolute>"; };
 		CBDD482F25515AE20006FEFC /* destinationSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = destinationSearchVC.swift; sourceTree = "<group>"; };
 		E641F6A8EF18E384BBCA1ED5 /* Pods-WAKEMEUP#.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WAKEMEUP#.release.xcconfig"; path = "Target Support Files/Pods-WAKEMEUP#/Pods-WAKEMEUP#.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,12 +88,13 @@
 		CBD2FD692536E96C008B52DB /* WAKEMEUP# */ = {
 			isa = PBXGroup;
 			children = (
-				CBDD482C25504BF30006FEFC /* ViewControllerJson.swift */,
+				CBDD482C25504BF30006FEFC /* Trafiklab.swift */,
 				CB453CBC2549742F00903F85 /* popupViewController.swift */,
 				CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */,
 				CBD2FD6C2536E96C008B52DB /* SceneDelegate.swift */,
 				CBD2FD6E2536E96C008B52DB /* ViewController.swift */,
 				CBD2FD702536E96C008B52DB /* Main.storyboard */,
+				CB0E687F255A95DA00F1E498 /* AudioViewController.swift */,
 				CBDD482F25515AE20006FEFC /* destinationSearchVC.swift */,
 				CBD2FD732536E96F008B52DB /* Assets.xcassets */,
 				CBD2FD752536E96F008B52DB /* LaunchScreen.storyboard */,
@@ -218,7 +221,8 @@
 				CBDD483025515AE20006FEFC /* destinationSearchVC.swift in Sources */,
 				CBD2FD6B2536E96C008B52DB /* AppDelegate.swift in Sources */,
 				CBD2FD6D2536E96C008B52DB /* SceneDelegate.swift in Sources */,
-				CBDD482D25504BF30006FEFC /* ViewControllerJson.swift in Sources */,
+				CBDD482D25504BF30006FEFC /* Trafiklab.swift in Sources */,
+				CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */,
 				CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
