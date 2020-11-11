@@ -30,6 +30,11 @@ class AudioViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBAction func dismissAudioSettings(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     //Exempel checkbox toggle ON/OFF
     //soundBtnOn/Off bildfiler
     //soundBtn namn på button (outlet)

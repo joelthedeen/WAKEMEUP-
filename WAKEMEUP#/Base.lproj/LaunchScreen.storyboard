@@ -2,8 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,13 +16,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pidgeon" translatesAutoresizingMaskIntoConstraints="NO" id="5AK-TS-7kF">
-                                <rect key="frame" x="87" y="290" width="240" height="128"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYG-4C-9js" userLabel="middleBubble">
+                                <rect key="frame" x="-21" y="565" width="240" height="240"/>
+                                <color key="backgroundColor" red="0.59167641400000004" green="0.73794466260000002" blue="0.73047882320000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNc-Wn-zKF" userLabel="smallTopBubble">
+                                <rect key="frame" x="-21" y="305" width="150" height="150"/>
+                                <color key="backgroundColor" red="0.27683377269999998" green="0.50496536489999999" blue="0.58877325059999996" alpha="0.42843000860000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhE-AV-mR7" userLabel="bottomBubble">
+                                <rect key="frame" x="267" y="746" width="180" height="180"/>
+                                <color key="backgroundColor" red="0.27683377269999998" green="0.50496536489999999" blue="0.58877325059999996" alpha="0.41879815920000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7S2-9t-tf6" userLabel="bigBubble">
+                                <rect key="frame" x="79" y="65" width="400" height="400"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sU8-u4-ViW" userLabel="middleBubble">
+                                        <rect key="frame" x="110" y="-53" width="240" height="240"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.59167641400000004" green="0.73794466260000002" blue="0.73047882320000002" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We're all feeling fine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N57-Hq-X6B">
+                                        <rect key="frame" x="-45" y="315" width="217" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="23"/>
+                                        <color key="textColor" name="background"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.27683377269999998" green="0.50496536489999999" blue="0.58877325059999996" alpha="0.71572666949999997" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs7-YP-MU9" userLabel="smallTopBubble">
+                                <rect key="frame" x="185" y="632" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <color key="backgroundColor" red="0.27683377269999998" green="0.50496536489999999" blue="0.58877325059999996" alpha="0.42843000860000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="topBlue"/>
+                        <constraints>
+                            <constraint firstItem="hhE-AV-mR7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="746" id="2ah-SK-QoV"/>
+                            <constraint firstItem="yNc-Wn-zKF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-41" id="4Ly-dk-uAv"/>
+                            <constraint firstItem="7S2-9t-tf6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="79" id="BgQ-Qk-yGb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hhE-AV-mR7" secondAttribute="trailing" constant="-53" id="Ctk-01-4Lg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aYG-4C-9js" secondAttribute="bottom" constant="57" id="OHv-Mk-mZF"/>
+                            <constraint firstAttribute="bottom" secondItem="7S2-9t-tf6" secondAttribute="bottom" constant="431" id="QHL-hh-D6D"/>
+                            <constraint firstItem="yNc-Wn-zKF" firstAttribute="leading" secondItem="aYG-4C-9js" secondAttribute="leading" id="SjH-lo-C9p"/>
+                            <constraint firstItem="aYG-4C-9js" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="565" id="XuB-An-Npd"/>
+                            <constraint firstItem="hhE-AV-mR7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="267" id="a7f-fv-1xl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yNc-Wn-zKF" secondAttribute="trailing" constant="285" id="feM-rw-gcX"/>
+                            <constraint firstItem="yNc-Wn-zKF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="261" id="gc9-LV-QOj"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="hhE-AV-mR7" secondAttribute="bottom" constant="-64" id="j2n-Iw-KD8"/>
+                            <constraint firstAttribute="bottom" secondItem="yNc-Wn-zKF" secondAttribute="bottom" constant="441" id="qxk-0V-kBN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7S2-9t-tf6" secondAttribute="trailing" constant="-85" id="vXl-jR-GZX"/>
+                            <constraint firstItem="hhE-AV-mR7" firstAttribute="leading" secondItem="aYG-4C-9js" secondAttribute="trailing" constant="48" id="wou-e1-MAk"/>
+                            <constraint firstItem="7S2-9t-tf6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="21" id="zN2-4F-MnI"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,7 +80,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pidgeon" width="206" height="158"/>
+        <namedColor name="background">
+            <color red="0.92156862745098034" green="0.89411764705882357" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="topBlue">
             <color red="0.52156862745098043" green="0.66666666666666663" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

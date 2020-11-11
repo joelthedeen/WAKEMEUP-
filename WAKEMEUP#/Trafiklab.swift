@@ -49,29 +49,22 @@ class Trafiklab {
     
     func loadFromServerURLSESSION(_ query: String, completionHandler: @escaping (_ result : Stops?) -> Void)
     {
-        
-        
-        
-        
-        
-        var returnVal: [String] = []
-        guard let url = URL(string: "https://api.resrobot.se/location.name.json?key=f18064aa-50c1-4486-860a-158a6e6c46c3&maxNo=10&input=\(query)") else {
+        guard let queryENCODED = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             completionHandler(nil)
             return
         }
-        
-        let request = URLRequest(url: url)
-        
-        let thesession = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            let thestring = String(decoding: data!, as: UTF8.self)
-            print(thestring)
-            
-            self.gotTextFromServer(serverstring: thestring, completionHandler: completionHandler)
-            //retrunVal = returnArr
+        guard let url = URL(string: "https://api.resrobot.se/location.name.json?key=f18064aa-50c1-4486-860a-158a6e6c46c3&maxNo=10&input=\(queryENCODED)") else {
+            completionHandler(nil)
+            return
         }
-        thesession.resume()
-       
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let contents = try String(contentsOf: url)
+                self.gotTextFromServer(serverstring: contents, completionHandler: completionHandler)
+            } catch {
+                completionHandler(nil)
+            }
+        }
     }
     
     func gotTextFromServer(serverstring : String, completionHandler: @escaping (_ result : Stops?) -> Void)
