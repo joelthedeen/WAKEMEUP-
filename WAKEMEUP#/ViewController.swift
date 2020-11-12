@@ -9,6 +9,7 @@ import UIKit
 import MSCircularSlider
 import MapKit
 import CoreLocation
+import AVFoundation
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {

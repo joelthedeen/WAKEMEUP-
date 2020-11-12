@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 
@@ -23,6 +24,7 @@ class AudioViewController: UIViewController {
     var soundActive4: Bool = false
     var soundIsActive: Bool = false
     
+    var player: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,38 @@ class AudioViewController: UIViewController {
     @IBAction func dismissAudioSettings(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+            
+    @IBAction func toggle1(_ sender: Any) {
+        soundActive = !soundActive
+        toggleSoundForEachButton(sender, soundActive)
+        setAllBoolToFalse(soundActive, "1")
+        }
+    
+    
+    @IBAction func speaker2(_ sender: Any) {
+        soundActive2 = !soundActive2
+        toggleSoundForEachButton(sender, soundActive2 )
+        setAllBoolToFalse(soundActive, "2")
+    }
+    
+    @IBAction func speaker3(_ sender: Any) {
+        soundActive3 = !soundActive3
+        toggleSoundForEachButton(sender,soundActive3 )
+        setAllBoolToFalse(soundActive, "3")
+    }
+    
+    @IBAction func speaker4(_ sender: Any) {
+        soundActive4 = !soundActive4
+        toggleSoundForEachButton(sender, soundActive4)
+        setAllBoolToFalse(soundActive, "4")
+    }
+    
+    
+    @IBAction func audio1(_ sender: Any) {
+        PlaySound(currentPlay: "WAKE1")
+    }
+    
     
     //Exempel checkbox toggle ON/OFF
     //soundBtnOn/Off bildfiler
@@ -90,31 +124,14 @@ class AudioViewController: UIViewController {
         }
     }
 
-            
-    @IBAction func toggle1(_ sender: Any) {
-        soundActive = !soundActive
-        toggleSoundForEachButton(sender, soundActive)
-        setAllBoolToFalse(soundActive, "1")
-        }
+   
+ 
     
-    
-    @IBAction func speaker2(_ sender: Any) {
-        soundActive2 = !soundActive2
-        toggleSoundForEachButton(sender, soundActive2 )
-        setAllBoolToFalse(soundActive, "2")
-    }
-    
-    @IBAction func speaker3(_ sender: Any) {
-        soundActive3 = !soundActive3
-        toggleSoundForEachButton(sender,soundActive3 )
-        setAllBoolToFalse(soundActive, "3")
-    }
-    
-    @IBAction func speaker4(_ sender: Any) {
-        soundActive4 = !soundActive4
-        toggleSoundForEachButton(sender, soundActive4)
-        setAllBoolToFalse(soundActive, "4")
-    }
+    private func PlaySound(currentPlay: String!){
+        let url = Bundle.main.url(forResource: currentPlay, withExtension: "wav")
+        player = try! AVAudioPlayer(contentsOf: url!)
+        player?.play()
+      }
     
     
 }
