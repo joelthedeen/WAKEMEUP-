@@ -23,6 +23,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var textFieldActive: UITextField!
     
+    @IBOutlet weak var kmTextfield: UITextField!
     
     @IBOutlet weak var searchTableview: UITableView!
     
@@ -35,7 +36,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var checkActive : Bool = true
     
     var stopResult : Stops?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -238,6 +238,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 slider._currentValue = 100 - (percentDone * 100)
                 distanceLabel.text = "\(Int(distanceNow / 1000))km"
                 percentLabel.text = "\(Int(percentDone * 100))%"
+                
+                
             }
             
         }
