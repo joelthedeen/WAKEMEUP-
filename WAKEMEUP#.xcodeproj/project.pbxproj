@@ -10,8 +10,8 @@
 		C32E3584F65AC43C66B92DC2 /* Pods_WAKEMEUP_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72767A0A6B065FDE8BB7F0AF /* Pods_WAKEMEUP_.framework */; };
 		CB068DB5255D7DF700B0F8C4 /* WAKE4.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB1255D7DF600B0F8C4 /* WAKE4.wav */; };
 		CB068DB6255D7DF700B0F8C4 /* WAKE3.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB2255D7DF600B0F8C4 /* WAKE3.wav */; };
-		CB068DB7255D7DF700B0F8C4 /* WAKE2.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB3255D7DF700B0F8C4 /* WAKE2.wav */; };
-		CB068DB8255D7DF700B0F8C4 /* WAKE1.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB4255D7DF700B0F8C4 /* WAKE1.wav */; };
+		CB068DB7255D7DF700B0F8C4 /* WAKE1.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */; };
+		CB068DB8255D7DF700B0F8C4 /* WAKE2wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB4255D7DF700B0F8C4 /* WAKE2wav */; };
 		CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E687F255A95DA00F1E498 /* AudioViewController.swift */; };
 		CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB453CBC2549742F00903F85 /* popupViewController.swift */; };
 		CBD2FD6B2536E96C008B52DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */; };
@@ -29,8 +29,8 @@
 		72767A0A6B065FDE8BB7F0AF /* Pods_WAKEMEUP_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WAKEMEUP_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB068DB1255D7DF600B0F8C4 /* WAKE4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE4.wav; sourceTree = "<group>"; };
 		CB068DB2255D7DF600B0F8C4 /* WAKE3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE3.wav; sourceTree = "<group>"; };
-		CB068DB3255D7DF700B0F8C4 /* WAKE2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE2.wav; sourceTree = "<group>"; };
-		CB068DB4255D7DF700B0F8C4 /* WAKE1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE1.wav; sourceTree = "<group>"; };
+		CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE1.wav; sourceTree = "<group>"; };
+		CB068DB4255D7DF700B0F8C4 /* WAKE2wav */ = {isa = PBXFileReference; lastKnownFileType = file; path = WAKE2wav; sourceTree = "<group>"; };
 		CB0E687F255A95DA00F1E498 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		CB453CBC2549742F00903F85 /* popupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupViewController.swift; sourceTree = "<group>"; };
 		CBD2FD672536E96C008B52DB /* WAKEMEUP#.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WAKEMEUP#.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,8 +78,8 @@
 		CB068DBA255D7DFF00B0F8C4 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				CB068DB4255D7DF700B0F8C4 /* WAKE1.wav */,
-				CB068DB3255D7DF700B0F8C4 /* WAKE2.wav */,
+				CB068DB4255D7DF700B0F8C4 /* WAKE2wav */,
+				CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */,
 				CB068DB2255D7DF600B0F8C4 /* WAKE3.wav */,
 				CB068DB1255D7DF600B0F8C4 /* WAKE4.wav */,
 			);
@@ -182,9 +182,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB068DB8255D7DF700B0F8C4 /* WAKE1.wav in Resources */,
+				CB068DB8255D7DF700B0F8C4 /* WAKE2wav in Resources */,
 				CBD2FD772536E96F008B52DB /* LaunchScreen.storyboard in Resources */,
-				CB068DB7255D7DF700B0F8C4 /* WAKE2.wav in Resources */,
+				CB068DB7255D7DF700B0F8C4 /* WAKE1.wav in Resources */,
 				CB068DB5255D7DF700B0F8C4 /* WAKE4.wav in Resources */,
 				CBD2FD742536E96F008B52DB /* Assets.xcassets in Resources */,
 				CBD2FD722536E96C008B52DB /* Main.storyboard in Resources */,
