@@ -29,11 +29,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var recentButton2: UIButton!
     @IBOutlet weak var recentButton3: UIButton!
     
-   
+    var finalDestination: String = ""
     var distance = 0
     var timer : Timer?
     var checkActive : Bool = true
     var destinationText:String = ""
+    var recentList = [[String : Any]]()
+    
     
     var stopResult : Stops?
     var player: AVAudioPlayer?
@@ -92,6 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let chosenStop = stopResult!.StopLocation[indexPath.row]
+        finalDestination = chosenStop.name
         
         var recentList = [[String : Any]]()
         
@@ -132,7 +135,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     func updateRecents()
     {
-        var recentList = [[String : Any]]()
+        
         
         if let savedList = UserDefaults.standard.array(forKey: "recents") as? [[String : Any]]
         {
@@ -233,19 +236,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
   
     
-    
-    @IBAction func startBtn(_ sender: Any) {
-        /*
-        startPos = CLLocation (latitude: 55.609934, longitude: 13.007176)
-        endPos = CLLocation(latitude: 60.61667, longitude: 16.76667)
 
-        updateUI()*/
-        
-        
- 
-        //timer?.invalidate()
-        //setValuesForDistance()
-    }
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print("locationManagerDidChangeLocalization funkar")
         
@@ -382,7 +373,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         player?.play()
                         
                         
-                        let alert = UIAlertController(title: "Time to wake up", message: "You are now \(kmTextfield.text ?? "empty") km from \("destination")", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Time to wake up", message: "You are now \(kmTextfield.text ?? "empty") km from \(finalDestination)", preferredStyle: .alert)
 
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
                             self.player?.stop()

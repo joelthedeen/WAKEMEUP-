@@ -28,34 +28,12 @@ class AudioViewController: UIViewController {
     
     var player: AVAudioPlayer?
     let userDefaults = UserDefaults.standard
-    let appearance = SCLAlertView.SCLAppearance(
-        showCloseButton: false
-    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         onloadDefaultAudio()
-        
-        
-//        // Test Load Audio
-//        if let currentPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
-//            let url = Bundle.main.url(forResource: currentPlay, withExtension: "wav")
-//            player = try! AVAudioPlayer(contentsOf: url!)
-//            player?.play()
-//        }
-//        
-//        // Test stop Audio
-//        let alertView = SCLAlertView(appearance: appearance)
-//       
-//        alertView.addButton("Stop") {
-//            self.player?.stop()
-//        }
-//        //alertView.addButton("Close") {
-//        //    print("Close")
-//        //}
-//        alertView.showInfo("Now you have 99  Km. left", subTitle: "")
 
     }
     
@@ -77,6 +55,10 @@ class AudioViewController: UIViewController {
     
     
     @IBAction func speaker2(_ sender: Any) {
+        if(soundActive2 == true)
+        {
+            return
+        }
         soundActive2 = !soundActive2
         toggleSoundForEachButton(sender, soundActive2 )
         setAllBoolToFalse(soundActive, "2")
@@ -84,6 +66,10 @@ class AudioViewController: UIViewController {
     }
     
     @IBAction func speaker3(_ sender: Any) {
+        if(soundActive3 == true)
+        {
+            return
+        }
         soundActive3 = !soundActive3
         toggleSoundForEachButton(sender,soundActive3 )
         setAllBoolToFalse(soundActive, "3")
@@ -91,6 +77,10 @@ class AudioViewController: UIViewController {
     }
     
     @IBAction func speaker4(_ sender: Any) {
+        if(soundActive4 == true)
+        {
+            return
+        }
         soundActive4 = !soundActive4
         toggleSoundForEachButton(sender, soundActive4)
         setAllBoolToFalse(soundActive, "4")
@@ -210,8 +200,3 @@ class AudioViewController: UIViewController {
     }
     
 }
-
-
-/*
-
-*/
