@@ -11,8 +11,9 @@
 		CB068DB5255D7DF700B0F8C4 /* WAKE4.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB1255D7DF600B0F8C4 /* WAKE4.wav */; };
 		CB068DB6255D7DF700B0F8C4 /* WAKE3.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB2255D7DF600B0F8C4 /* WAKE3.wav */; };
 		CB068DB7255D7DF700B0F8C4 /* WAKE1.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */; };
-		CB068DB8255D7DF700B0F8C4 /* WAKE2wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB4255D7DF700B0F8C4 /* WAKE2wav */; };
+		CB068DB8255D7DF700B0F8C4 /* WAKE2.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB4255D7DF700B0F8C4 /* WAKE2.wav */; };
 		CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E687F255A95DA00F1E498 /* AudioViewController.swift */; };
+		CB3F2828255ED2AC00732E19 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F2827255ED2AC00732E19 /* Constants.swift */; };
 		CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB453CBC2549742F00903F85 /* popupViewController.swift */; };
 		CBD2FD6B2536E96C008B52DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */; };
 		CBD2FD6D2536E96C008B52DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD2FD6C2536E96C008B52DB /* SceneDelegate.swift */; };
@@ -30,8 +31,9 @@
 		CB068DB1255D7DF600B0F8C4 /* WAKE4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE4.wav; sourceTree = "<group>"; };
 		CB068DB2255D7DF600B0F8C4 /* WAKE3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE3.wav; sourceTree = "<group>"; };
 		CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE1.wav; sourceTree = "<group>"; };
-		CB068DB4255D7DF700B0F8C4 /* WAKE2wav */ = {isa = PBXFileReference; lastKnownFileType = file; path = WAKE2wav; sourceTree = "<group>"; };
+		CB068DB4255D7DF700B0F8C4 /* WAKE2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE2.wav; sourceTree = "<group>"; };
 		CB0E687F255A95DA00F1E498 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		CB3F2827255ED2AC00732E19 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB453CBC2549742F00903F85 /* popupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupViewController.swift; sourceTree = "<group>"; };
 		CBD2FD672536E96C008B52DB /* WAKEMEUP#.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WAKEMEUP#.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +80,7 @@
 		CB068DBA255D7DFF00B0F8C4 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				CB068DB4255D7DF700B0F8C4 /* WAKE2wav */,
+				CB068DB4255D7DF700B0F8C4 /* WAKE2.wav */,
 				CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */,
 				CB068DB2255D7DF600B0F8C4 /* WAKE3.wav */,
 				CB068DB1255D7DF600B0F8C4 /* WAKE4.wav */,
@@ -119,6 +121,7 @@
 				CBD2FD752536E96F008B52DB /* LaunchScreen.storyboard */,
 				CBD2FD782536E96F008B52DB /* Info.plist */,
 				CB068DBA255D7DFF00B0F8C4 /* Audio */,
+				CB3F2827255ED2AC00732E19 /* Constants.swift */,
 			);
 			path = "WAKEMEUP#";
 			sourceTree = "<group>";
@@ -182,7 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB068DB8255D7DF700B0F8C4 /* WAKE2wav in Resources */,
+				CB068DB8255D7DF700B0F8C4 /* WAKE2.wav in Resources */,
 				CBD2FD772536E96F008B52DB /* LaunchScreen.storyboard in Resources */,
 				CB068DB7255D7DF700B0F8C4 /* WAKE1.wav in Resources */,
 				CB068DB5255D7DF700B0F8C4 /* WAKE4.wav in Resources */,
@@ -248,6 +251,7 @@
 				CBDD482D25504BF30006FEFC /* Trafiklab.swift in Sources */,
 				CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */,
 				CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */,
+				CB3F2828255ED2AC00732E19 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

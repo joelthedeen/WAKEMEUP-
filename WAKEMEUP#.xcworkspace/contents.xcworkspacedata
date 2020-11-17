@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/joelthedeen/Documents/Code/WAKEMEUP#/WAKEMEUP#/ViewControllerJson.swift">
-   </FileRef>
-   <FileRef
       location = "group:WAKEMEUP#.xcodeproj">
    </FileRef>
    <FileRef

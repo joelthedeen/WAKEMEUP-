@@ -10,32 +10,44 @@ import MSCircularSlider
 import MapKit
 import CoreLocation
 import AVFoundation
+import SCLAlertView
+
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     
-    
-    var locationManager = CLLocationManager()
-    
     @IBOutlet weak var slider: MSCircularSlider!
     @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var textFieldActive: UITextField!
-    
     @IBOutlet weak var kmTextfield: UITextField!
-    
     @IBOutlet weak var searchTableview: UITableView!
     
+    
+    @IBOutlet weak var recentButton1: UIButton!
+    @IBOutlet weak var recentButton2: UIButton!
+    @IBOutlet weak var recentButton3: UIButton!
+    
+   
     var distance = 0
     var timer : Timer?
-
-    var startPos : CLLocation?
-    var endPos : CLLocation?
-
     var checkActive : Bool = true
+    var destinationText:String = ""
     
     var stopResult : Stops?
+    var player: AVAudioPlayer?
+    var locationManager = CLLocationManager()
+    var startPos : CLLocation?
+    var endPos : CLLocation?
+    let userDefaults = UserDefaults.standard
+    
+    let appearance = SCLAlertView.SCLAppearance(
+        showCloseButton: false
+    )
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +57,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
        locationManager.requestWhenInUseAuthorization()
        locationManager.delegate = self
         
-        //searchTableview.isHidden = true
+        //searchTableview.isHidden = true 
+        
+        //kKmWakeup = Int(kmTextfield.text!) ?? 0
+        
     }
     
     //TABLEVIEW
@@ -67,6 +82,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchFieldCell") as! destinationSearchVC
         cell.searchText.text = stopResult!.StopLocation[indexPath.row].name
     
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.init(named: "darkBlue")
+        cell.selectedBackgroundView = backgroundView
+        
         return cell
     }
     
@@ -74,14 +93,122 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         let chosenStop = stopResult!.StopLocation[indexPath.row]
         
+        var recentList = [[String : Any]]()
+        
+        if let savedList = UserDefaults.standard.array(forKey: "recents") as? [[String : Any]]
+        {
+            recentList = savedList
+        }
+        
+        var saveLoc = [String : Any]()
+        saveLoc["name"] = chosenStop.name
+        saveLoc["lat"] = chosenStop.lat
+        saveLoc["lon"] = chosenStop.lon
+        
+        recentList.append(saveLoc)
+        
+        if(recentList.count == 4)
+        {
+            recentList.remove(at: 0)
+        }
+        
+        UserDefaults.standard.setValue(recentList, forKeyPath: "recents")
+        
+        updateRecents()
+        
         startPos = locationManager.location!
         endPos = CLLocation(latitude: chosenStop.lat, longitude: chosenStop.lon)
 
         updateUI()
+        textFieldActive.text = stopResult!.StopLocation[indexPath.row].name
+        searchTableview.isHidden = true
+        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        updateRecents()
+    }
+    
+    func updateRecents()
+    {
+        var recentList = [[String : Any]]()
+        
+        if let savedList = UserDefaults.standard.array(forKey: "recents") as? [[String : Any]]
+        {
+            recentList = savedList
+        }
+
+        recentButton1.setTitle("", for: .normal)
+        recentButton2.setTitle("", for: .normal)
+        recentButton3.setTitle("", for: .normal)
+
+        
+        if(recentList.count > 0)
+        {
+            recentButton1.setTitle(recentList[0]["name"] as! String, for: .normal)
+        }
+        if(recentList.count > 1)
+        {
+            recentButton2.setTitle(recentList[1]["name"] as! String, for: .normal)
+        }
+        if(recentList.count > 2)
+        {
+            recentButton3.setTitle(recentList[2]["name"] as! String, for: .normal)
+        }
+
+    }
+    
+    
+    @IBAction func goRecent1(_ sender: Any) {
+        var recentList = [[String : Any]]()
+        
+        if let savedList = UserDefaults.standard.array(forKey: "recents") as? [[String : Any]]
+        {
+            recentList = savedList
+        }
+        
+        if(recentList.count > 0)
+        {
+            startPos = locationManager.location!
+            endPos = CLLocation(latitude: recentList[0]["lat"] as! Double, longitude: recentList[0]["lon"] as! Double)
+           // destinationText = HITTA SLUTDESTINATION
+            updateUI()
+        }
+    }
+    
+    @IBAction func goRecent2(_ sender: Any) {
+        var recentList = [[String : Any]]()
+        
+        if let savedList = UserDefaults.standard.array(forKey: "recents") as? [[String : Any]]
+        {
+            recentList = savedList
+        }
+        
+        if(recentList.count > 1)
+        {
+            startPos = locationManager.location!
+            endPos = CLLocation(latitude: recentList[1]["lat"] as! Double, longitude: recentList[1]["lon"] as! Double)
+
+            updateUI()
+        }
+    }
+    
+    @IBAction func goRecent3(_ sender: Any) {
+        var recentList = [[String : Any]]()
+        
+        if let savedList = UserDefaults.standard.array(forKey: "recents") as? [[String : Any]]
+        {
+            recentList = savedList
+        }
+        
+        if(recentList.count > 2)
+        {
+            startPos = locationManager.location!
+            endPos = CLLocation(latitude: recentList[2]["lat"] as! Double, longitude: recentList[2]["lon"] as! Double)
+
+            updateUI()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {     //Keyboard hide on touch
@@ -108,11 +235,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     
     @IBAction func startBtn(_ sender: Any) {
-        
+        /*
         startPos = CLLocation (latitude: 55.609934, longitude: 13.007176)
         endPos = CLLocation(latitude: 60.61667, longitude: 16.76667)
 
-        updateUI()
+        updateUI()*/
+        
+        
+ 
         //timer?.invalidate()
         //setValuesForDistance()
     }
@@ -169,9 +299,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
  
  
     @IBAction func enterDestination(_ sender: Any) {
+        searchTableview.isHidden = false
         if let inputText = textFieldActive.text{
             
-            let res = Trafiklab().loadFromServerURLSESSION(inputText) { result in
+            let res: () = Trafiklab().loadFromServerURLSESSION(inputText) { result in
                 
                 self.stopResult = result
                 
@@ -228,17 +359,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             print(userLocation)
             if(startPos != nil)
+             
             {
-                var totalDistance = endPos!.distance(from: startPos!)
+                let totalDistance = endPos!.distance(from: startPos!)
                 
-                var distanceNow = endPos!.distance(from: userLocation)
+                let distanceNow = endPos!.distance(from: userLocation)
                 
-                var percentDone = 1 - (distanceNow/totalDistance)
+                let percentDone = 1 - (distanceNow/totalDistance)
                 
                 slider._currentValue = 100 - (percentDone * 100)
                 distanceLabel.text = "\(Int(distanceNow / 1000))km"
                 percentLabel.text = "\(Int(percentDone * 100))%"
                 
+                
+                kKmWakeup = Int(kmTextfield.text!) ?? 0
+                kKmLeft = Int(distanceNow / 1000)
+      
+               if (kKmLeft <= kKmWakeup) {
+                    if let currentPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
+                        let url = Bundle.main.url(forResource: currentPlay, withExtension: "wav")
+                        player = try! AVAudioPlayer(contentsOf: url!)
+                        player?.play()
+                        
+                        
+                        let alert = UIAlertController(title: "Time to wake up", message: "You are now \(kmTextfield.text ?? "empty") km from \("destination")", preferredStyle: .alert)
+
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            self.player?.stop()
+                        }))
+                        self.present(alert, animated: true)
+                        
+                        
+                      }
+                    
+                }
+               
                 
             }
             

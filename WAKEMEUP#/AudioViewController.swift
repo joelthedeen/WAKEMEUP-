@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-
+import SCLAlertView
 
 
 
@@ -24,43 +24,77 @@ class AudioViewController: UIViewController {
     var soundActive4: Bool = false
     var soundIsActive: Bool = false
     
+    var currentPlay = "WAKE1"
+    
     var player: AVAudioPlayer?
+    let userDefaults = UserDefaults.standard
+    let appearance = SCLAlertView.SCLAppearance(
+        showCloseButton: false
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        onloadDefaultAudio()
+        
+        
+//        // Test Load Audio
+//        if let currentPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
+//            let url = Bundle.main.url(forResource: currentPlay, withExtension: "wav")
+//            player = try! AVAudioPlayer(contentsOf: url!)
+//            player?.play()
+//        }
+//        
+//        // Test stop Audio
+//        let alertView = SCLAlertView(appearance: appearance)
+//       
+//        alertView.addButton("Stop") {
+//            self.player?.stop()
+//        }
+//        //alertView.addButton("Close") {
+//        //    print("Close")
+//        //}
+//        alertView.showInfo("Now you have 99  Km. left", subTitle: "")
+
     }
     
     
     @IBAction func dismissAudioSettings(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-            
+ 
     @IBAction func toggle1(_ sender: Any) {
+        if(soundActive == true)
+        {
+            return
+        }
         soundActive = !soundActive
         toggleSoundForEachButton(sender, soundActive)
         setAllBoolToFalse(soundActive, "1")
-        }
+        currentPlay = "WAKE1"
+    }
     
     
     @IBAction func speaker2(_ sender: Any) {
         soundActive2 = !soundActive2
         toggleSoundForEachButton(sender, soundActive2 )
         setAllBoolToFalse(soundActive, "2")
+        currentPlay = "WAKE2"
     }
     
     @IBAction func speaker3(_ sender: Any) {
         soundActive3 = !soundActive3
         toggleSoundForEachButton(sender,soundActive3 )
         setAllBoolToFalse(soundActive, "3")
+        currentPlay = "WAKE3"
     }
     
     @IBAction func speaker4(_ sender: Any) {
         soundActive4 = !soundActive4
         toggleSoundForEachButton(sender, soundActive4)
         setAllBoolToFalse(soundActive, "4")
+        currentPlay = "WAKE4"
     }
     
     
@@ -68,10 +102,25 @@ class AudioViewController: UIViewController {
         PlaySound(currentPlay: "WAKE1")
     }
     
+    @IBAction func audio2(_ sender: Any) {
+        PlaySound(currentPlay: "WAKE2")
+    }
     
-    //Exempel checkbox toggle ON/OFF
-    //soundBtnOn/Off bildfiler
-    //soundBtn namn på button (outlet)
+    @IBAction func audio3(_ sender: Any) {
+        PlaySound(currentPlay: "WAKE3")
+    }
+    
+    @IBAction func audio4(_ sender: Any) {
+        PlaySound(currentPlay: "WAKE4")
+    }
+    
+    
+    @IBAction func setToDefaultBntPress(_ sender: Any) {
+        saveUserDefault(defaultAudio: currentPlay, setForKey: "defaultAudio")
+        dismiss(animated: true, completion: nil)
+    }
+    
+//Toggle buttons
     func toggleSoundForEachButton(_ button: Any, _ soundIsActive: Bool) {
         if soundIsActive  {
             (button as AnyObject).setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
@@ -82,6 +131,7 @@ class AudioViewController: UIViewController {
         }
 
     }
+    
     
     func setAllBoolToFalse(_ isSound: Bool, _ isButton:String) {
         
@@ -120,7 +170,7 @@ class AudioViewController: UIViewController {
             soundActive = false
             speaker1.setImage(#imageLiteral(resourceName: "soundOff"), for: .normal)
         default:
-            print("dick")
+            print("test")
         }
     }
 
@@ -134,7 +184,34 @@ class AudioViewController: UIViewController {
       }
     
     
+    private func saveUserDefault(defaultAudio: String, setForKey: String){
+        userDefaults.setValue(defaultAudio , forKey: setForKey)
+        userDefaults.synchronize()
+      }
+    
+    private func onloadDefaultAudio(){
+        print("onloadDefaultAudio")
+        if let defaultAudio  = userDefaults.value(forKey: "defaultAudio") as? String {
+            print(defaultAudio)
+            switch defaultAudio {
+            case  "WAKE1":
+                speaker1.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
+            case  "WAKE2":
+                speaker2.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
+            case  "WAKE3":
+                speaker3.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
+            case  "WAKE4":
+                speaker4.setImage(#imageLiteral(resourceName: "soundOn"), for: .normal)
+            default:
+                return
+            }
+           
+         }
+    }
+    
 }
 
 
+/*
 
+*/
