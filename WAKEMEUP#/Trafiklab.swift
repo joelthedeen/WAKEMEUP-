@@ -17,7 +17,6 @@ class SLoc : Codable{
     var lon : Double
     var name : String
 }
-////
 
 extension String {
   func stringByAddingPercentEncodingForRFC3986() -> String? {
@@ -69,7 +68,7 @@ class Trafiklab {
     
     func gotTextFromServer(serverstring : String, completionHandler: @escaping (_ result : Stops?) -> Void)
     {
-        //print(serverstring)
+        
         var returnArr: [String] = []
         
         let jsondata = Data(serverstring.utf8)
@@ -80,16 +79,7 @@ class Trafiklab {
             let stops = try decoder.decode(Stops.self, from: jsondata)
             
             completionHandler(stops)
-            /*
-            for astop in stops.StopLocation
-            {
-                print(astop.name)
-                returnArr.append(astop.name)
-            }
-            DispatchQueue.main.async {
-                // RITA PÅ SKÄRMEN
-            }
-            */
+            
         } catch {
             print("Failed to decode JSON")
             completionHandler(nil)

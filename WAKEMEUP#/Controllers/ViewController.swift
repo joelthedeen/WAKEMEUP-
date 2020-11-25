@@ -10,7 +10,8 @@ import MSCircularSlider
 import MapKit
 import CoreLocation
 import AVFoundation
-import SCLAlertView
+import UserNotifications
+
 
 
 
@@ -35,6 +36,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var checkActive : Bool = true
     var destinationText:String = ""
     var recentList = [[String : Any]]()
+   
     
     
     var stopResult : Stops?
@@ -44,24 +46,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var endPos : CLLocation?
     let userDefaults = UserDefaults.standard
     
-    let appearance = SCLAlertView.SCLAppearance(
-        showCloseButton: false
-    )
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
        locationManager = CLLocationManager()
        locationManager.requestAlwaysAuthorization()
-       locationManager.requestWhenInUseAuthorization()
+       //locationManager.requestWhenInUseAuthorization()
        locationManager.delegate = self
+       Notification().getAuthorization()
         
-        //searchTableview.isHidden = true 
-        
-        //kKmWakeup = Int(kmTextfield.text!) ?? 0
         
     }
     
@@ -119,14 +115,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         updateRecents()
         
+        locationManager.startUpdatingLocation()
+        
         startPos = locationManager.location!
         endPos = CLLocation(latitude: chosenStop.lat, longitude: chosenStop.lon)
 
+        Notification().postNotification(notificationMessage: "Hej", loc: endPos!.coordinate, radius: Double(kKmWakeup))
+        
         updateUI()
         textFieldActive.text = stopResult!.StopLocation[indexPath.row].name
         searchTableview.isHidden = true
         
-        
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -149,15 +149,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         if(recentList.count > 0)
         {
-            recentButton1.setTitle(recentList[0]["name"] as! String, for: .normal)
+            recentButton1.setTitle((recentList[0]["name"] as! String), for: .normal)
         }
         if(recentList.count > 1)
         {
-            recentButton2.setTitle(recentList[1]["name"] as! String, for: .normal)
+            recentButton2.setTitle((recentList[1]["name"] as! String), for: .normal)
         }
         if(recentList.count > 2)
         {
-            recentButton3.setTitle(recentList[2]["name"] as! String, for: .normal)
+            recentButton3.setTitle((recentList[2]["name"] as! String), for: .normal)
         }
 
     }
@@ -235,65 +235,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
   
-    
-
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print("locationManagerDidChangeLocalization funkar")
+        print("locationManagerDidChangeLocalization on track")
         
         if CLLocationManager.locationServicesEnabled() {
-            print ("LOCATION ENABLED")
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            print ("user location found")
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
     }
-    
-    
-    
-    
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations[0])
-        updateUI()
-        /*
-        let userLocation:CLLocation = locations[0]
-        let long = userLocation.coordinate.longitude
-        let lat = userLocation.coordinate.latitude
-        
-        print(userLocation)
-        
-        if(startPos != nil)
-        {
-            var totalDistance = endPos!.distance(from: startPos!)
-            
-            var distanceNow = endPos!.distance(from: userLocation)
-            
-            var percentDone = 1 - (distanceNow/totalDistance)
-            
-            print("totalDistance \(totalDistance)")
-            print("distanceNow \(distanceNow)")
-            print(percentDone)
-            
-            slider._currentValue = 100 - (percentDone * 100)
-        }
-        */
-        
-    }
-    
 
     
-    
-    
-//    func distance(from: CLLocation) -> CLLocationDistance{
-//        locationManager
-//
-//        return
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //print(locations[0])
+        updateUI()
+        
+    }
  
  
     @IBAction func enterDestination(_ sender: Any) {
         searchTableview.isHidden = false
         if let inputText = textFieldActive.text{
             
-            let res: () = Trafiklab().loadFromServerURLSESSION(inputText) { result in
+            let _: () = Trafiklab().loadFromServerURLSESSION(inputText) { result in
                 
                 self.stopResult = result
                 
@@ -312,35 +276,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 
             }
             
-            print("query is now:",res)
+            print("query is now: \(textFieldActive.text!)")
 
-            // call the function for api-call
         }
-        
-     /*   if textFieldActive.text != "" {
-            VCJson?.loadFromServerURLSESSION(textFieldActive.text!)
-            // call the function for api-call
-        }
-        */
         
     }
-     
 
-    
-    
 
     @IBAction func sliderValueChanged(_ sender: Any) {                              //connect slider to labels
         
-        /*
-        var totalDistance = endPos!.distance(from: startPos!)
-        
-        var distanceNow = endPos!.distance(from: userLocation)
-        
-        var percentDone = 1 - (distanceNow/totalDistance)
-        
-        distanceLabel.text = "\(Int(slider.currentValue))km"
-        percentLabel.text = "\(Int(slider.currentValue))%"
-        */
     }
                                                                                         //get userLocation
 
@@ -348,7 +292,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     {
         if let userLocation = locationManager.location
         {
-            print(userLocation)
+            //print(userLocation)
             if(startPos != nil)
              
             {
@@ -371,44 +315,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         let url = Bundle.main.url(forResource: currentPlay, withExtension: "wav")
                         player = try! AVAudioPlayer(contentsOf: url!)
                         player?.play()
+                        player!.numberOfLoops = -1
                         
                         
-                        let alert = UIAlertController(title: "Time to wake up", message: "You are now \(kmTextfield.text ?? "empty") km from \(finalDestination)", preferredStyle: .alert)
+                        
+                        
+                        
+                        let center = UNUserNotificationCenter.current()
+                          center.getPendingNotificationRequests() { allpend in
+                              print("ALLPENDING DONE")
+                              for pend in allpend
+                              {
+                                  print(pend.identifier)
+                                  
+                              }
+                          }
+                        
+                        //self.locationManager.stopUpdatingLocation()
+                
+                        let notificationMessage = "You are now \(String(describing: kmTextfield.text)) km from \(finalDestination). "
+                        
+                        let alert = UIAlertController(title: "Gather your things, you're almost there..", message: notificationMessage, preferredStyle: .alert)
 
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        self.locationManager.stopUpdatingLocation()
+                        
+                        alert.addAction(UIAlertAction(title: "Stop sound", style: .default, handler: { action in
                             self.player?.stop()
                         }))
                         self.present(alert, animated: true)
                         
                         
+                        
                       }
                     
                 }
-               
-                
+
             }
             
         }
     }
-  /*
-    
-    //@IBOutlet weak var hideStartInfo: UIButton!
-    
-    @IBAction func toggleBtn(_ sender: Any) {
-    
-
-            checkActive = !checkActive
-            
-            if checkActive {
-                hideStartInfo.setImage(unCheckedBox, for: .normal)
-              print("box unchecked")
-            } else {
-                hideStartInfo.setImage(checkedBoxBlue, for: .normal)
-                print("box checked")
-            }
-        }
-*/
 
 }
-    
-
