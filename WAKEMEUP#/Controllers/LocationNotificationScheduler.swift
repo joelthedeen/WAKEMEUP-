@@ -20,7 +20,7 @@ class Notification {
        if settings.authorizationStatus == .authorized {
          print(" Yes > if settings.authorizationStatus == .authorized")
        } else {
-         center.requestAuthorization(options: [.alert, .sound], completionHandler: { granted, error in
+        center.requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { granted, error in
           if granted && error == nil {
             print("Yes > granted && error == nil")
           } else {
@@ -36,6 +36,7 @@ class Notification {
       let content = UNMutableNotificationContent()
       content.title = "Gather your things.."
       content.body = notificationMessage
+        
 
         var currentPlay = "WAKE1.wav"
         if let defaultPlay  = userDefaults.value(forKey: "defaultAudio") as? String {

@@ -13,6 +13,7 @@
 		CB068DB7255D7DF700B0F8C4 /* WAKE1.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */; };
 		CB068DB8255D7DF700B0F8C4 /* WAKE2.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB068DB4255D7DF700B0F8C4 /* WAKE2.wav */; };
 		CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0E687F255A95DA00F1E498 /* AudioViewController.swift */; };
+		CB11A810256FE64F00EE487F /* Trafiklab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB11A80F256FE64F00EE487F /* Trafiklab.swift */; };
 		CB3F2828255ED2AC00732E19 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3F2827255ED2AC00732E19 /* Constants.swift */; };
 		CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB453CBC2549742F00903F85 /* popupViewController.swift */; };
 		CB6683F42567C7AD007CA8A0 /* LocationNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6683F32567C7AD007CA8A0 /* LocationNotificationScheduler.swift */; };
@@ -24,7 +25,6 @@
 		CBD2FD772536E96F008B52DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBD2FD752536E96F008B52DB /* LaunchScreen.storyboard */; };
 		CBD9EA0B2565150F0086DEB7 /* introViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD9EA0A2565150F0086DEB7 /* introViewController.swift */; };
 		CBD9EA102565283D0086DEB7 /* audioInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD9EA0F2565283D0086DEB7 /* audioInfoViewController.swift */; };
-		CBDD482D25504BF30006FEFC /* Trafiklab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD482C25504BF30006FEFC /* Trafiklab.swift */; };
 		CBDD483025515AE20006FEFC /* destinationSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDD482F25515AE20006FEFC /* destinationSearchVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,7 @@
 		CB068DB3255D7DF700B0F8C4 /* WAKE1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE1.wav; sourceTree = "<group>"; };
 		CB068DB4255D7DF700B0F8C4 /* WAKE2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE2.wav; sourceTree = "<group>"; };
 		CB0E687F255A95DA00F1E498 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		CB11A80F256FE64F00EE487F /* Trafiklab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trafiklab.swift; sourceTree = "<group>"; };
 		CB3F2827255ED2AC00732E19 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB453CBC2549742F00903F85 /* popupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupViewController.swift; sourceTree = "<group>"; };
 		CB6683F32567C7AD007CA8A0 /* LocationNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotificationScheduler.swift; sourceTree = "<group>"; };
@@ -49,7 +50,6 @@
 		CBD2FD782536E96F008B52DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBD9EA0A2565150F0086DEB7 /* introViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = introViewController.swift; sourceTree = "<group>"; };
 		CBD9EA0F2565283D0086DEB7 /* audioInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = audioInfoViewController.swift; sourceTree = "<group>"; };
-		CBDD482C25504BF30006FEFC /* Trafiklab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Trafiklab.swift; path = "/Users/joelthedeen/Documents/Code/WAKEMEUP#/WAKEMEUP#/Trafiklab.swift"; sourceTree = "<absolute>"; };
 		CBDD482F25515AE20006FEFC /* destinationSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = destinationSearchVC.swift; sourceTree = "<group>"; };
 		E641F6A8EF18E384BBCA1ED5 /* Pods-WAKEMEUP#.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WAKEMEUP#.release.xcconfig"; path = "Target Support Files/Pods-WAKEMEUP#/Pods-WAKEMEUP#.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +97,7 @@
 		CB6683F125669453007CA8A0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CBDD482C25504BF30006FEFC /* Trafiklab.swift */,
+				CB11A80F256FE64F00EE487F /* Trafiklab.swift */,
 				CB453CBC2549742F00903F85 /* popupViewController.swift */,
 				CBD2FD6E2536E96C008B52DB /* ViewController.swift */,
 				CB6683F32567C7AD007CA8A0 /* LocationNotificationScheduler.swift */,
@@ -266,11 +266,11 @@
 				CBDD483025515AE20006FEFC /* destinationSearchVC.swift in Sources */,
 				CBD2FD6B2536E96C008B52DB /* AppDelegate.swift in Sources */,
 				CBD2FD6D2536E96C008B52DB /* SceneDelegate.swift in Sources */,
-				CBDD482D25504BF30006FEFC /* Trafiklab.swift in Sources */,
 				CBD9EA102565283D0086DEB7 /* audioInfoViewController.swift in Sources */,
 				CB0E6880255A95DA00F1E498 /* AudioViewController.swift in Sources */,
 				CB453CBD2549742F00903F85 /* popupViewController.swift in Sources */,
 				CB3F2828255ED2AC00732E19 /* Constants.swift in Sources */,
+				CB11A810256FE64F00EE487F /* Trafiklab.swift in Sources */,
 				CBD9EA0B2565150F0086DEB7 /* introViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

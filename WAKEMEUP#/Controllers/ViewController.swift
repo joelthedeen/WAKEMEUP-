@@ -57,6 +57,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
        //locationManager.requestWhenInUseAuthorization()
        locationManager.delegate = self
        Notification().getAuthorization()
+
         
         
     }
@@ -302,7 +303,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 
                 let percentDone = 1 - (distanceNow/totalDistance)
                 
-                slider._currentValue = 100 - (percentDone * 100)
+                slider._currentValue = 0 - (percentDone * 100)
                 distanceLabel.text = "\(Int(distanceNow / 1000))km"
                 percentLabel.text = "\(Int(percentDone * 100))%"
                 
@@ -333,13 +334,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         
                         //self.locationManager.stopUpdatingLocation()
                 
-                        let notificationMessage = "You are now \(String(describing: kmTextfield.text)) km from \(finalDestination). "
+                        let notificationMessage = "You are now \(kmTextfield.text!) km from \(finalDestination). "
                         
                         let alert = UIAlertController(title: "Gather your things, you're almost there..", message: notificationMessage, preferredStyle: .alert)
 
                         self.locationManager.stopUpdatingLocation()
                         
-                        alert.addAction(UIAlertAction(title: "Stop sound", style: .default, handler: { action in
+                        alert.addAction(UIAlertAction(title: "Kill audio", style: .default, handler: { action in
                             self.player?.stop()
                         }))
                         self.present(alert, animated: true)

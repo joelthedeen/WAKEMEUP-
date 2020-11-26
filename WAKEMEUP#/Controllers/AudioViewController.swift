@@ -28,7 +28,7 @@ class AudioViewController: UIViewController {
     var soundIsActive: Bool = false
     
     
-    var currentPlay = "WAKE1"
+    var currentPlay = "WAKE3"
     
     var player: AVAudioPlayer?
     let userDefaults = UserDefaults.standard
@@ -42,7 +42,7 @@ class AudioViewController: UIViewController {
         // Do any additional setup after loading the view.
         onloadDefaultAudio()
         
-        overrideUserInterfaceStyle = .dark
+    
         
     }
     
