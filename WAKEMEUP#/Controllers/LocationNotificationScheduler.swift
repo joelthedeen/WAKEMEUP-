@@ -30,13 +30,17 @@ class Notification {
        }
       })
     }
-    func postNotification(notificationMessage : String, loc : CLLocationCoordinate2D, radius : Double) {
-      print(">> postNotification \(radius)")
+    func postNotification(notificationMessage : String, locX : CLLocationCoordinate2D, radius : Double) {
+      
+        let loc = CLLocationCoordinate2D(latitude: 55.611398, longitude: 12.994678)
+        
+        
+        print(">> postNotification \(radius)")
         print(loc)
       let content = UNMutableNotificationContent()
       content.title = "Gather your things.."
       content.body = notificationMessage
-        
+        content.badge = 8
 
         var currentPlay = "WAKE1.wav"
         if let defaultPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
@@ -46,12 +50,13 @@ class Notification {
       content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: currentPlay))
       
         let id = "reminder-\(UUID().uuidString)"
+        
         let destRegion = CLCircularRegion(center: loc,
-                                                  radius: radius*1000,
+                                          radius: 2000,
                                                   identifier: id)
         destRegion.notifyOnEntry = true
-        destRegion.notifyOnExit = false
-        let trigger = UNLocationNotificationTrigger(region: destRegion, repeats: false)
+        destRegion.notifyOnExit = true
+        let trigger = UNLocationNotificationTrigger(region: destRegion, repeats: true)
                 
         
         
@@ -63,6 +68,7 @@ class Notification {
       let center = UNUserNotificationCenter.current()
         
         center.removeAllPendingNotificationRequests()
+        
         center.getPendingNotificationRequests() { allpend in
             print("ALLPENDING")
             for pend in allpend
@@ -76,11 +82,15 @@ class Notification {
       center.add(request, withCompletionHandler: { error in
         print("NOTIFADD")
         print(error.debugDescription)
-       let main = OperationQueue.main
+
+
+        let main = OperationQueue.main
        main.addOperation {
         print("main.addOperation == true")
        }
       })
+        
+
     
         
         
@@ -113,4 +123,5 @@ class Notification {
         */
         
     }
+
 }

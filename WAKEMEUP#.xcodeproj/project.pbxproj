@@ -37,6 +37,7 @@
 		CB068DB4255D7DF700B0F8C4 /* WAKE2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WAKE2.wav; sourceTree = "<group>"; };
 		CB0E687F255A95DA00F1E498 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		CB11A80F256FE64F00EE487F /* Trafiklab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trafiklab.swift; sourceTree = "<group>"; };
+		CB11A819257061D400EE487F /* WAKEMEUP#.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "WAKEMEUP#.entitlements"; sourceTree = "<group>"; };
 		CB3F2827255ED2AC00732E19 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CB453CBC2549742F00903F85 /* popupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupViewController.swift; sourceTree = "<group>"; };
 		CB6683F32567C7AD007CA8A0 /* LocationNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotificationScheduler.swift; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		CBD2FD692536E96C008B52DB /* WAKEMEUP# */ = {
 			isa = PBXGroup;
 			children = (
+				CB11A819257061D400EE487F /* WAKEMEUP#.entitlements */,
 				CBD2FD6A2536E96C008B52DB /* AppDelegate.swift */,
 				CBD2FD6C2536E96C008B52DB /* SceneDelegate.swift */,
 				CBD2FD702536E96C008B52DB /* Main.storyboard */,
@@ -419,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "WAKEMEUP#/WAKEMEUP#.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NVH8V9P2U6;
 				INFOPLIST_FILE = "WAKEMEUP#/Info.plist";
@@ -427,7 +430,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "se.joelthedeen.WAKEMEUP-";
+				PRODUCT_BUNDLE_IDENTIFIER = se.joelthedeen.wake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "WAKEMEUP#/WAKEMEUP#.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NVH8V9P2U6;
 				INFOPLIST_FILE = "WAKEMEUP#/Info.plist";
@@ -448,7 +452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "se.joelthedeen.WAKEMEUP-";
+				PRODUCT_BUNDLE_IDENTIFIER = se.joelthedeen.wake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

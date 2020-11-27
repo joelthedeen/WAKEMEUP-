@@ -23,11 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
+	<string>x</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>y</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>z</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -53,6 +53,7 @@
 	<array>
 		<string>audio</string>
 		<string>location</string>
+		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
