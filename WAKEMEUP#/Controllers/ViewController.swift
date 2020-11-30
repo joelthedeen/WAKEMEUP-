@@ -58,13 +58,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
        locationManager.delegate = self
-       Notification().getAuthorization()
+       //Notification().getAuthorization()
 
         let center = UNUserNotificationCenter.current()
         
    
           center.getPendingNotificationRequests() { allpend in
-              print("ALLPENDING")
+            print(allpend.count)
               for pend in allpend
               {
                   print(pend.identifier)
@@ -135,7 +135,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         startPos = locationManager.location!
         endPos = CLLocation(latitude: chosenStop.lat, longitude: chosenStop.lon)
 
-        Notification().postNotification(notificationMessage: "Hej", locX: endPos!.coordinate, radius: Double(kKmWakeup))
+//        Notification().postNotification(notificationMessage: "Hej", locX: endPos!.coordinate, radius: Double(kKmWakeup))
         
         updateUI()
         textFieldActive.text = stopResult!.StopLocation[indexPath.row].name
