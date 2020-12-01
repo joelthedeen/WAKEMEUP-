@@ -7,5 +7,5 @@
 
 import Foundation
 
-public var  kKmWakeup: Int = 8
+
 public var kKmLeft: Int = 0

@@ -286,7 +286,7 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YvX-bA-3Wz">
-                                <rect key="frame" x="112.66666666666669" y="145.66666666666666" width="150" height="149.99999999999997"/>
+                                <rect key="frame" x="112.66666666666669" y="164" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="fOn-yp-x6f"/>
                                     <constraint firstAttribute="height" constant="150" id="r3D-AH-ebf"/>
@@ -451,10 +451,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0oo0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIM-Xu-xoE">
-                                <rect key="frame" x="120.33333333333333" y="64" width="134.33333333333337" height="71.666666666666686"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="55"/>
-                                <color key="textColor" name="background"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Almosthere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIM-Xu-xoE">
+                                <rect key="frame" x="85.333333333333329" y="64" width="204.33333333333337" height="52"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                <color key="textColor" name="darkBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -467,6 +467,7 @@
                             <constraint firstItem="CL0-vk-hJO" firstAttribute="leading" secondItem="mtK-1s-IXA" secondAttribute="leading" constant="50" id="6yI-DZ-L4q"/>
                             <constraint firstItem="mtK-1s-IXA" firstAttribute="trailing" secondItem="CL0-vk-hJO" secondAttribute="trailing" constant="50" id="7We-dF-xPV"/>
                             <constraint firstItem="UPG-bA-Psv" firstAttribute="top" secondItem="b2n-OF-kNt" secondAttribute="bottom" constant="40" id="BUm-Iw-Up6"/>
+                            <constraint firstItem="jgp-Sm-eFO" firstAttribute="top" secondItem="YvX-bA-3Wz" secondAttribute="bottom" constant="30" id="Dat-Uw-Tnz"/>
                             <constraint firstItem="g4m-2x-mv5" firstAttribute="top" secondItem="jgp-Sm-eFO" secondAttribute="bottom" constant="55" id="HAB-dr-NxK"/>
                             <constraint firstItem="EIM-Xu-xoE" firstAttribute="top" secondItem="mtK-1s-IXA" secondAttribute="top" constant="20" id="K3y-Xm-b99"/>
                             <constraint firstItem="mtK-1s-IXA" firstAttribute="bottom" secondItem="SNJ-Bt-Qoi" secondAttribute="bottom" id="MJr-HY-rZU"/>
@@ -492,7 +493,6 @@
                             <constraint firstItem="R5C-hO-3xc" firstAttribute="centerX" secondItem="NtV-QD-SDF" secondAttribute="centerX" id="p6K-tT-aeL"/>
                             <constraint firstItem="Mec-op-Qdn" firstAttribute="centerX" secondItem="NtV-QD-SDF" secondAttribute="centerX" id="pAN-5p-iJc"/>
                             <constraint firstItem="jgp-Sm-eFO" firstAttribute="top" secondItem="mtK-1s-IXA" secondAttribute="top" constant="300" id="wcC-xt-LET"/>
-                            <constraint firstItem="YvX-bA-3Wz" firstAttribute="top" secondItem="EIM-Xu-xoE" secondAttribute="bottom" constant="10" id="zfQ-f0-3nM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Vbv-X0-i7d"/>
@@ -613,20 +613,20 @@ Done!</string>
                                     <segue destination="mWi-zi-1WD" kind="presentation" modalTransitionStyle="flipHorizontal" id="4cy-g1-W9R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0oo0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBj-nb-Jib">
-                                <rect key="frame" x="120" y="54" width="135" height="72"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="55"/>
-                                <color key="textColor" name="background"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Almosthere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBj-nb-Jib">
+                                <rect key="frame" x="85" y="54" width="205" height="52"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
+                                <color key="textColor" name="custom"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" preferredStyle="sliding" translatesAutoresizingMaskIntoConstraints="NO" id="5Me-vB-TLb">
-                                <rect key="frame" x="163" y="141" width="51" height="31"/>
+                                <rect key="frame" x="163" y="121" width="51" height="31"/>
                                 <color key="tintColor" name="AccentColor"/>
                                 <color key="onTintColor" name="orangeButton"/>
                                 <color key="thumbTintColor" name="custom"/>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't show again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkv-7c-3a1">
-                                <rect key="frame" x="136" y="178" width="103" height="17"/>
+                                <rect key="frame" x="136" y="158" width="103" height="17"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="13"/>
                                 <color key="textColor" name="custom"/>
                                 <nil key="highlightedColor"/>

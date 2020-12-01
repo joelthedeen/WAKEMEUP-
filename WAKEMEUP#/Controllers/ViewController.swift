@@ -16,7 +16,7 @@ import UserNotifications
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource, UNUserNotificationCenterDelegate {
-
+    
     
     @IBOutlet weak var slider: MSCircularSlider!
     @IBOutlet weak var percentLabel: UILabel!
@@ -30,13 +30,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var recentButton2: UIButton!
     @IBOutlet weak var recentButton3: UIButton!
     
+    public var kKmWakeup: Int = 0
+    
     var finalDestination: String = ""
     var distance = 0
     var timer : Timer?
     var checkActive : Bool = true
     var destinationText:String = ""
     var recentList = [[String : Any]]()
-   
+    
     
     
     var stopResult : Stops?
@@ -51,26 +53,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       locationManager = CLLocationManager()
         
-       //locationManager.requestAlwaysAuthorization()
-       locationManager.requestWhenInUseAuthorization()
+        locationManager = CLLocationManager()
+        
+        
+        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-       locationManager.delegate = self
-       //Notification().getAuthorization()
-
+        locationManager.delegate = self
+        
+        LocationNotification().getAuthorization()
+        
         let center = UNUserNotificationCenter.current()
         
-   
-          center.getPendingNotificationRequests() { allpend in
+        
+        center.getPendingNotificationRequests() { allpend in
             print(allpend.count)
-              for pend in allpend
-              {
-                  print(pend.identifier)
-                  
-              }
-          }
+            for pend in allpend
+            {
+                print(pend.identifier)
+                
+            }
+            
+        }
         
     }
     
@@ -94,7 +98,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchFieldCell") as! destinationSearchVC
         cell.searchText.text = stopResult!.StopLocation[indexPath.row].name
-    
+        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.init(named: "darkBlue")
         cell.selectedBackgroundView = backgroundView
@@ -134,14 +138,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         startPos = locationManager.location!
         endPos = CLLocation(latitude: chosenStop.lat, longitude: chosenStop.lon)
-
-//        Notification().postNotification(notificationMessage: "Hej", locX: endPos!.coordinate, radius: Double(kKmWakeup))
+        
+        kKmWakeup = Int(kmTextfield.text!) ?? 0
+        LocationNotification().postNotification(notificationMessage: "Gather your things, you're almost there..", loc: endPos!.coordinate, radius: Double(kKmWakeup))
+        
         
         updateUI()
         textFieldActive.text = stopResult!.StopLocation[indexPath.row].name
         searchTableview.isHidden = true
         
-       
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,11 +162,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             recentList = savedList
         }
-
+        
         recentButton1.setTitle("", for: .normal)
         recentButton2.setTitle("", for: .normal)
         recentButton3.setTitle("", for: .normal)
-
+        
         
         if(recentList.count > 0)
         {
@@ -174,7 +180,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             recentButton3.setTitle((recentList[2]["name"] as! String), for: .normal)
         }
-
+        
     }
     
     
@@ -190,7 +196,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             startPos = locationManager.location!
             endPos = CLLocation(latitude: recentList[0]["lat"] as! Double, longitude: recentList[0]["lon"] as! Double)
-           // destinationText = HITTA SLUTDESTINATION
+            // destinationText = HITTA SLUTDESTINATION
             updateUI()
         }
     }
@@ -207,7 +213,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             startPos = locationManager.location!
             endPos = CLLocation(latitude: recentList[1]["lat"] as! Double, longitude: recentList[1]["lon"] as! Double)
-
+            
             updateUI()
         }
     }
@@ -224,7 +230,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             startPos = locationManager.location!
             endPos = CLLocation(latitude: recentList[2]["lat"] as! Double, longitude: recentList[2]["lon"] as! Double)
-
+            
             updateUI()
         }
     }
@@ -232,7 +238,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {     //Keyboard hide on touch
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
-      }
+    }
     
     func setValuesForDistance() {
         distance = 224
@@ -249,7 +255,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
-  
+    
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         print("locationManagerDidChangeLocalization on track")
         
@@ -259,15 +265,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             locationManager.startUpdatingLocation()
         }
     }
-
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //print(locations[0])
         updateUI()
         
     }
- 
- 
+    
+    
     @IBAction func enterDestination(_ sender: Any) {
         searchTableview.isHidden = false
         if let inputText = textFieldActive.text{
@@ -292,24 +298,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             }
             
             print("query is now: \(textFieldActive.text!)")
-
+            
         }
         
     }
-
-
+    
+    
     @IBAction func sliderValueChanged(_ sender: Any) {                              //connect slider to labels
         
     }
-                                                                                        //get userLocation
-
+    //get userLocation
+    
     func updateUI()
     {
         if let userLocation = locationManager.location
         {
             //print(userLocation)
             if(startPos != nil)
-             
+            
             {
                 let totalDistance = endPos!.distance(from: startPos!)
                 
@@ -324,8 +330,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 
                 kKmWakeup = Int(kmTextfield.text!) ?? 0
                 kKmLeft = Int(distanceNow / 1000)
-      
-               if (kKmLeft <= kKmWakeup) {
+                
+                if (kKmLeft <= kKmWakeup) {
                     if let currentPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
                         let url = Bundle.main.url(forResource: currentPlay, withExtension: "wav")
                         player = try! AVAudioPlayer(contentsOf: url!)
@@ -337,41 +343,41 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                         
                         
                         let center = UNUserNotificationCenter.current()
-                          center.getPendingNotificationRequests() { allpend in
-                              print("ALLPENDING DONE")
-                              for pend in allpend
-                              {
-                                  print(pend.identifier)
-                                  
-                              }
-                            
-                            
+                        center.getPendingNotificationRequests() { allpend in
+                            print("ALLPENDING DONE")
+                            for pend in allpend
+                            {
+                                print(pend.identifier)
+                                
                             }
                             
-                          }
+                            
+                        }
                         
-                        //self.locationManager.stopUpdatingLocation()
-                
-                        let notificationMessage = "You are now \(kmTextfield.text!) km from \(finalDestination). "
-                        
-                        let alert = UIAlertController(title: "Gather your things, you're almost there..", message: notificationMessage, preferredStyle: .alert)
-
-                        self.locationManager.stopUpdatingLocation()
-                        
-                        alert.addAction(UIAlertAction(title: "Kill audio", style: .default, handler: { action in
-                            self.player?.stop()
-                        }))
-                        self.present(alert, animated: true)
-                        
-                        
-                        
-                      }
+                    }
+                    
+                    //self.locationManager.stopUpdatingLocation()
+                    
+                    let notificationMessage = "You are now \(kmTextfield.text!) km from \(finalDestination). "
+                    
+                    let alert = UIAlertController(title: "Gather your things, you're almost there..", message: notificationMessage, preferredStyle: .alert)
+                    
+                    self.locationManager.stopUpdatingLocation()
+                    
+                    alert.addAction(UIAlertAction(title: "Kill audio", style: .default, handler: { action in
+                        self.player?.stop()
+                    }))
+                    self.present(alert, animated: true)
+                    
+                    
                     
                 }
-
+                
             }
             
         }
+        
     }
+}
 
 
