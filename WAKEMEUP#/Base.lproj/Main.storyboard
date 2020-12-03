@@ -252,7 +252,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_filledColor">
-                                        <color key="value" name="orangeButton"/>
+                                        <color key="value" name="green"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="_lineWidth">
                                         <integer key="value" value="5"/>
@@ -261,13 +261,13 @@
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_handleColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" name="custom"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="_handleEnlargementPoints">
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_unfilledColor">
-                                        <color key="value" name="green"/>
+                                        <color key="value" name="darkBlue"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="_handleRotatable" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="_handleHighlightable" value="YES"/>
@@ -451,8 +451,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Almosthere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIM-Xu-xoE">
-                                <rect key="frame" x="85.333333333333329" y="64" width="204.33333333333337" height="52"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Almosphere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIM-Xu-xoE">
+                                <rect key="frame" x="79.333333333333329" y="64" width="216.66666666666669" height="52"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
                                 <color key="textColor" name="darkBlue"/>
                                 <nil key="highlightedColor"/>
@@ -613,8 +613,8 @@ Done!</string>
                                     <segue destination="mWi-zi-1WD" kind="presentation" modalTransitionStyle="flipHorizontal" id="4cy-g1-W9R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Almosthere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBj-nb-Jib">
-                                <rect key="frame" x="85" y="54" width="205" height="52"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Almosphere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBj-nb-Jib">
+                                <rect key="frame" x="79" y="54" width="217" height="52"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="40"/>
                                 <color key="textColor" name="custom"/>
                                 <nil key="highlightedColor"/>
@@ -1140,11 +1140,6 @@ Done!</string>
             <point key="canvasLocation" x="2807.1999999999998" y="143.47826086956522"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="b2n-OF-kNt">
-            <size key="intrinsicContentSize" width="194" height="194"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="4cy-g1-W9R"/>
     </inferredMetricsTieBreakers>

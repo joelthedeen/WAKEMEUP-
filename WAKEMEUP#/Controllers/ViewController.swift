@@ -49,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     let userDefaults = UserDefaults.standard
     
     
-    
+    var currentStop : [String : Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,10 +147,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         textFieldActive.text = stopResult!.StopLocation[indexPath.row].name
         searchTableview.isHidden = true
         
+        var saveCurrentLoc = [String : Any]()
+        saveCurrentLoc["name"] = finalDestination
+        saveCurrentLoc["startlat"] = startPos?.coordinate.latitude
+        saveCurrentLoc["startlon"] = startPos?.coordinate.longitude
+        saveCurrentLoc["endlat"] = endPos?.coordinate.latitude
+        saveCurrentLoc["endlon"] = endPos?.coordinate.longitude
+        saveCurrentLoc["km"] = kKmWakeup
+        
+        UserDefaults.standard.setValue(saveCurrentLoc, forKey: "saveCurrentLoc")
+
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        if let saveCurr = UserDefaults.standard.dictionary(forKey: "saveCurrentLoc")
+        {
+            finalDestination = saveCurr["name"] as! String
+            startPos = CLLocation(latitude: saveCurr["startlat"] as! Double, longitude: saveCurr["startlon"] as! Double)
+            endPos = CLLocation(latitude: saveCurr["endlat"] as! Double, longitude: saveCurr["endlon"] as! Double)
+            
+            textFieldActive.text = finalDestination
+            
+            kKmWakeup = saveCurr["km"] as! Int
+            
+            kmTextfield.text = String(kKmWakeup)
+            
+            updateUI()
+        }
+        
+        
+       
+        
+        
         updateRecents()
     }
     
@@ -197,6 +227,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             startPos = locationManager.location!
             endPos = CLLocation(latitude: recentList[0]["lat"] as! Double, longitude: recentList[0]["lon"] as! Double)
             // destinationText = HITTA SLUTDESTINATION
+            
+            finalDestination = recentList[0]["name"] as! String
+            
+            kKmWakeup = Int(kmTextfield.text!) ?? 0
+            LocationNotification().postNotification(notificationMessage: "Gather your things, you're almost there..", loc: endPos!.coordinate, radius: Double(kKmWakeup))
+            
+            var saveCurrentLoc = [String : Any]()
+            saveCurrentLoc["name"] = finalDestination
+            saveCurrentLoc["startlat"] = startPos?.coordinate.latitude
+            saveCurrentLoc["startlon"] = startPos?.coordinate.longitude
+            saveCurrentLoc["endlat"] = endPos?.coordinate.latitude
+            saveCurrentLoc["endlon"] = endPos?.coordinate.longitude
+            saveCurrentLoc["km"] = kKmWakeup
+            
+            UserDefaults.standard.setValue(saveCurrentLoc, forKey: "saveCurrentLoc")
+            
+            textFieldActive.text = finalDestination
+            
             updateUI()
         }
     }
@@ -214,6 +262,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             startPos = locationManager.location!
             endPos = CLLocation(latitude: recentList[1]["lat"] as! Double, longitude: recentList[1]["lon"] as! Double)
             
+            finalDestination = recentList[1]["name"] as! String
+            
+            kKmWakeup = Int(kmTextfield.text!) ?? 0
+            LocationNotification().postNotification(notificationMessage: "Gather your things, you're almost there..", loc: endPos!.coordinate, radius: Double(kKmWakeup))
+            
+            var saveCurrentLoc = [String : Any]()
+            saveCurrentLoc["name"] = finalDestination
+            saveCurrentLoc["startlat"] = startPos?.coordinate.latitude
+            saveCurrentLoc["startlon"] = startPos?.coordinate.longitude
+            saveCurrentLoc["endlat"] = endPos?.coordinate.latitude
+            saveCurrentLoc["endlon"] = endPos?.coordinate.longitude
+            saveCurrentLoc["km"] = kKmWakeup
+            
+            UserDefaults.standard.setValue(saveCurrentLoc, forKey: "saveCurrentLoc")
+            
+            textFieldActive.text = finalDestination
+            
             updateUI()
         }
     }
@@ -230,6 +295,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         {
             startPos = locationManager.location!
             endPos = CLLocation(latitude: recentList[2]["lat"] as! Double, longitude: recentList[2]["lon"] as! Double)
+            
+            finalDestination = recentList[2]["name"] as! String
+            
+            kKmWakeup = Int(kmTextfield.text!) ?? 0
+            LocationNotification().postNotification(notificationMessage: "Gather your things, you're almost there..", loc: endPos!.coordinate, radius: Double(kKmWakeup))
+            
+            var saveCurrentLoc = [String : Any]()
+            saveCurrentLoc["name"] = finalDestination
+            saveCurrentLoc["startlat"] = startPos?.coordinate.latitude
+            saveCurrentLoc["startlon"] = startPos?.coordinate.longitude
+            saveCurrentLoc["endlat"] = endPos?.coordinate.latitude
+            saveCurrentLoc["endlon"] = endPos?.coordinate.longitude
+            saveCurrentLoc["km"] = kKmWakeup
+            
+            UserDefaults.standard.setValue(saveCurrentLoc, forKey: "saveCurrentLoc")
+            
+            textFieldActive.text = finalDestination
             
             updateUI()
         }
@@ -329,7 +411,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                 
                 
                 kKmWakeup = Int(kmTextfield.text!) ?? 0
-                kKmLeft = Int(distanceNow / 1000)
+                kKmLeft = Int(distanceNow / 100)
                 
                 if (kKmLeft <= kKmWakeup) {
                     if let currentPlay  = userDefaults.value(forKey: "defaultAudio") as? String {

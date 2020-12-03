@@ -41,7 +41,7 @@ class LocationNotification: NSObject, UNUserNotificationCenterDelegate {
         
         
         
-        print(">> postNotification \(radius)")
+        print(">> postNotification \(radius) km from target")
         print(loc)
         
         let content = UNMutableNotificationContent()
@@ -59,7 +59,7 @@ class LocationNotification: NSObject, UNUserNotificationCenterDelegate {
         let id = "reminder-\(UUID().uuidString)"
         
         let destRegion = CLCircularRegion(center: loc,
-                                          radius: CLLocationDistance(radius),
+                                          radius: CLLocationDistance(radius*1000),
                                           identifier: id)
         destRegion.notifyOnEntry = true
         destRegion.notifyOnExit = false
