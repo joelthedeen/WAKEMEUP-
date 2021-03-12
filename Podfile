@@ -7,7 +7,7 @@ target 'WAKEMEUP#' do
 
 pod 'MSCircularSlider'
 pod 'IQKeyboardManagerSwift'
-pod 'SCLAlertView'
+
 
   # Pods for WAKEMEUP#
 

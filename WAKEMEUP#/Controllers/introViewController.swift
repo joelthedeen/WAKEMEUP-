@@ -15,21 +15,16 @@ class introViewController: UIViewController {
     var switchButtonOn: Bool = false
     let userDefaults = UserDefaults.standard
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-       
-        // Do any additional setup after loading the view.
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         if(switchButton.isOn == false)
         {
             return
         }
-        if(switchButton.isOn == true){
+        if(switchButton.isOn == true)
+        {
             performSegue(withIdentifier: "gomain", sender: nil)
         }
         else{

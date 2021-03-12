@@ -17,17 +17,17 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>x</string>
+	<string>In order to let Almosphere function as intended, you must allow location tracking while using the app. By doing this, Almosphere can keep track on your position and alert you as you get closer to your destination.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>y</string>
+	<string>In order to let Almosphere function as intended, you must allow location tracking while using the app. By doing this, Almosphere can keep track on your position and alert you as you get closer to your destination.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>z</string>
+	<string>In order to let Almosphere function as intended, you must allow location tracking while using the app. By doing this, Almosphere can keep track on your position and alert you as you get closer to your destination.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -51,9 +51,8 @@
 	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
+		<string>fetch</string>
 		<string>location</string>
-		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

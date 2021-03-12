@@ -19,7 +19,6 @@ class LocationNotification: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().delegate = self
         getAuthorization()
     }
-
     func getAuthorization() {
         let center = UNUserNotificationCenter.current()
         center.getNotificationSettings(completionHandler: { settings in
@@ -38,24 +37,19 @@ class LocationNotification: NSObject, UNUserNotificationCenterDelegate {
     }
     
     func postNotification(notificationMessage : String, loc : CLLocationCoordinate2D, radius : Double) {
+            print(">> postNotification \(radius) km from target")
+            print(loc)
         
-        
-        
-        print(">> postNotification \(radius) km from target")
-        print(loc)
-        
-        let content = UNMutableNotificationContent()
+    let content = UNMutableNotificationContent()
         content.title = "Almost there.."
         content.body = notificationMessage
-        content.badge = 1
+        content.badge = 0
         
         var currentPlay = "WAKE1.wav"
-        if let defaultPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
-            currentPlay = defaultPlay + ".wav"
+            if let defaultPlay  = userDefaults.value(forKey: "defaultAudio") as? String {
+                currentPlay = defaultPlay + ".wav"
         }
-        
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: currentPlay))
-        
         let id = "reminder-\(UUID().uuidString)"
         
         let destRegion = CLCircularRegion(center: loc,
@@ -64,82 +58,33 @@ class LocationNotification: NSObject, UNUserNotificationCenterDelegate {
         destRegion.notifyOnEntry = true
         destRegion.notifyOnExit = false
         let trigger = UNLocationNotificationTrigger(region: destRegion, repeats: false)
-        
-        
-        
-        
-        
-        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
         
         center.removeAllPendingNotificationRequests()
         
         center.add(request, withCompletionHandler: { error in
-            print("NOTIFICATION SCHEDULED")
-            print(error.debugDescription)
+                print("NOTIFICATION SCHEDULED")
+                print(error.debugDescription)
             
             center.getPendingNotificationRequests() { allpend in
                 print("ALLPENDING DONE")
-                for pend in allpend
-                {
+                for pend in allpend {
                     print(pend.identifier)
-                    
                 }
             }
             DispatchQueue.main.async {
-                
             }
-            
         })
-        
     }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
     }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 
     }
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
- let content2 = UNMutableNotificationContent()
- content2.title = "TID NOTIS"
- content2.body = notificationMessage
- 
- 
- 
- content2.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: currentPlay))
- 
- 
- let trigger2 = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
- let request2 = UNNotificationRequest(identifier: id, content: content2, trigger: trigger2)
- center.add(request2, withCompletionHandler: { error in
- let main = OperationQueue.main
- main.addOperation {
- print("main.addOperation == true")
- }
- })
- 
- */
 
 
 
